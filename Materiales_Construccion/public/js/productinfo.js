@@ -1,188 +1,86 @@
-// Select relevant HTML elements
-const filterButtons = document.querySelectorAll("#filter-buttons button");
-const min = document.querySelector("#Min")
-const max = document.querySelector("#Max")
-const marca = document.querySelector("#Marca")
-const gallery = document.querySelector("#filterable-cards");
-
-
-const search = {
-    marca: '',
-    min: '',
-    max: ''
-}
-
+const ShowPrice = document.querySelector("#price");
+const product = document.getElementById("Product");
+const title = product.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+const description = document.querySelector("#description");
+const ShowImage = document.querySelector("#image");
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    showProducts(products);
-
-    
-
-
-      //Filters Events
-
-      marca.addEventListener('change', e => {
-        search.marca = e.target.value;
-
-        filterProduct();
-
-      })
-
-      min.addEventListener('change', e => {
-        search.min = e.target.value;
-
-        filterProduct();
-      })
-
-      max.addEventListener('change', e => {
-        search.max = e.target.value;
-
-        filterProduct();
-
-      })
-
-      function filterProduct(){
-
-        const result = products.filter(filterMarca).filter(filterMin).filter(filterMax);
-        showProducts(result);
-
-      }
-
-      function filterMarca(product){
-        const {marca} = search;
-            if(marca){
-                return product.marca === marca;
-            }
-            return product;
-      }
-
-      function filterMin(product){
-        const {min} = search;
-            if(min){
-                console.log(product)
-                return product.precio >= min;
-                
-            }
-            return product;
-
-      }
-
-      function filterMax(product){
-        const {max} = search;
-            if(max){
-                console.log(product)
-                return product.precio <= max;
-                
-            }
-            return product;
-
-      }
-      
-
+    ShowProduct();
 
 })
 
 
-function clearGallery(){
-
-    while(gallery.firstChild){
-        gallery.removeChild(gallery.firstChild);
-    }
-
-}
+function ShowProduct(){
 
 
-function showProducts(products){
+    console.log(title);
 
-    clearGallery();
+    if (products.some(product =>  product.nombre === title)) {
 
-    products.forEach(product => {
+        var Info = products.find(product => product.nombre === title);
 
-        const card = document.createElement('div');
-        card.classList = 'card p-0';
+        //Show Product Price
+        const price = document.createElement('span');
+        price.classList = 'h5'
+        price.textContent = `$ ${Info.precio} MXN `;
+        const pz = document.createElement('span');
+        pz.classList = 'text-muted';
+        pz.textContent = "/pz"
+        ShowPrice.appendChild(price);
+        ShowPrice.appendChild(pz);
+        
+        //Show Product Description
+        const dt = document.createElement('dt')
+        dt.classList = "col-3"
+        dt.textContent = "Descripción:"
+        const desc = document.createElement('dd');
+        desc.classList = "col-9";
+        desc.textContent = Info.descripcion;
 
-        card.setAttribute('data-name', `${product.categoria}`);
+        description.appendChild(dt);
+        description.appendChild(desc);
+
+        //Show Product Category
+        const dt2 = document.createElement('dt')
+        dt2.classList = "col-3"
+        dt2.textContent = "Categoria:"
+        const category = document.createElement('dd');
+        category.classList = "col-9";
+        category.textContent = Info.categoria.charAt(0).toUpperCase() + Info.categoria.slice(1);
+
+        description.appendChild(dt2);
+        description.appendChild(category);
+
+        //Show Product Brand
+        const dt3 = document.createElement('dt')
+        dt3.classList = "col-3"
+        dt3.textContent = "Marca:"
+        const brand = document.createElement('dd');
+        brand.classList = "col-9";
+        brand.textContent = Info.marca;
+
+        description.appendChild(dt3);
+        description.appendChild(brand);
+
+        //Show Product Image
         const img = document.createElement('img');
-        img.classList = 'img-gallery';
-        img.src = product.img_route;
+        img.classList = 'rounded-4 fit';
+        img.src = Info.img_route;
+        img.style.maxHeight = '100vh';
+        img.style.maxWidth = '100%';
+        img.style.margin = 'auto';
 
-        const cardBody = document.createElement('div');
-        cardBody.classList = 'card-body';
-
-        const title = document.createElement('h6');
-        title.classList = 'card-title';
-        title.textContent = product.nombre;
-
-        const desc = document.createElement('p');
-        desc.classList = 'card-text';
-        desc.textContent = product.descripcion;
-
-        const space = document.createElement('br')
-
-        const show = document.createElement('a');
-        show.classList = 'btn btn-primary';
-        show.setAttribute('href', `/producto?article=${product.nombre}`)
-        show.textContent = 'Ver';
-
-        card.appendChild(img)
-        cardBody.appendChild(title);
-        cardBody.appendChild(desc);
-        cardBody.appendChild(space)
-        cardBody.appendChild(show)
-        
-        
-
-        
-
-    card.appendChild(cardBody);
-
-    gallery.appendChild(card);
-
-    const filterableCards = document.querySelectorAll("#filterable-cards .card");
-
-    // Function to filter cards based on filter buttons
-    const filterCards = (e) => {
-    document.querySelector("#filter-buttons .active").classList.remove("active");
-    e.target.classList.add("active");
+        ShowImage.appendChild(img);
 
 
-    filterableCards.forEach(card => {
-        // show the card if it matches the clicked filter or show all cards if "all" filter is clicked
-        if(card.dataset.name === e.target.dataset.filter || e.target.dataset.filter === "todo") {
-            return card.classList.replace("hide", "show");
-        }
-        card.classList.add("hide");
-    });
+        } 
+
+
 }
 
 
-    filterButtons.forEach(button => button.addEventListener("click", filterCards));
-
-    //Search Products
-    document.addEventListener("keyup", e=>{
-
-        if (e.target.matches("#searchbar")){
-      
-            if (e.key ==="Escape")e.target.value = ""
-      
-            filterableCards.forEach(card =>{
-      
-                card.textContent.toLowerCase().includes(e.target.value.toLowerCase())
-                  ?card.classList.replace("hide", "show")
-                  :card.classList.add("hide")
-            })
-      
-        }
-      })
-
-    });
-
-    
-
-}
-
-  const products = [
+const products = [
 
     {
         nombre: 'Ladrillo Boveda',
@@ -571,3 +469,4 @@ function showProducts(products){
     },
     
 ]
+

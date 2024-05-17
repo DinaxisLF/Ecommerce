@@ -3,7 +3,7 @@
 
 @section('contenido')
 @section('titulo', 'inicio')
-<div class="container py-4">
+<div class="container-carrousel">
 
   <div id="carousel_inicio" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner carousel-fade">
@@ -49,7 +49,7 @@
 
     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
       <div class="card" style="width: 18rem;">
-        <img src="/imagenes/4.jpg" class="card-img-top" alt="...">
+        <img src="/imagenes/about/Servicio 1.webp" class="card-img-top" style="height: 300px; alt="...">
         <div class="card-body text-center">
           <h5 class="card-title">Construcción</h5>
           <a href="#" class="btn btn-primary">Ir</a>
@@ -58,7 +58,7 @@
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
       <div class="card" style="width: 18rem;">
-        <img src="/imagenes/5.jpg" class="card-img-top" alt="...">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Hand_tools.jpg/1200px-Hand_tools.jpg"   style="height: 300px; class="card-img-top" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title">Herramientas</h5>
           <a href="#" class="btn btn-primary">Ir</a>
@@ -67,7 +67,7 @@
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
       <div class="card" style="width: 18rem;">
-        <img src="/imagenes/6.jpg" class="card-img-top" alt="...">
+        <img src="https://todoferreteria.com.mx/wp-content/uploads/2023/07/acero-e1689115062663.png" style="height: 300px; class="card-img-top" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title">Otros</h5>
           <a href="#" class="btn btn-primary">Ir</a>
@@ -166,5 +166,8 @@
       </form>
   </div>
 </section>
+
+
+
 
 @endsection

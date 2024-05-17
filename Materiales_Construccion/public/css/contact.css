@@ -1,0 +1,48 @@
+body {
+    font-family: 'Bebas Neue';
+    background: #f1f1f1;
+}
+
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.contact-info {
+    background-color: #000080;
+    color: white;
+    width: 50%;
+    padding: 20px;
+}
+.contact-info h2{
+    text-align: center;
+}
+.contact-info p {
+    margin-top: 15px;
+  }
+  .contact-info a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-top: 15px;
+  }
+.contact-form {
+    width: 60%;
+    padding: 20px;
+}
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.contact-form button {
+    padding: 10px 20px;
+    background-color: #000080;
+    color: white;
+    border: none;
+}
+
+img:hover{
+    cursor: pointer;
+}

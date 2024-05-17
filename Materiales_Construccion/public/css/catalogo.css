@@ -2,37 +2,55 @@
 
 
 .card .img-gallery:hover{
-  transform: scale(1.1);
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.card .img-gallery{
+  width: 190px;
+  height: 190px;
+}
+
 
 body{
   background-color: #fff;
 }
 
+
 #filter-buttons button {
   border-radius: 3px;
-  background: #f1f1f1;
+  background: #007bff;
   border-color: transparent;
   font-family: "Poppins", sans-serif;
+  color: #fff;
 }
 
 #filter-buttons button:hover {
-  background: #ddd;
+  background: #3f3b3b;
+  color: #ffffff;
 }
 
 #filter-buttons button.active {
   color: #fff;
-  background: #0a1a28;
+  background: #3f3b3b;
 }
 
 #filterable-cards .card {
   font-family: "Poppins", sans-serif;
-  width: 15rem;
+  width: 12rem;
   border: 2px solid transparent;
 }
 
 #filterable-cards .card.hide {
   display: none;
+}
+
+#filterable-cards{
+
+  border-radius: 1rem;
+  background-color: #fefeff;
+  margin-left: 60px;
 }
 
 .height{
@@ -85,3 +103,4 @@ body{
   box-shadow: none;
   border:none;
 }
+

@@ -1,7 +1,6 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +19,8 @@ Route::view('/catalogo','catalogo');
 Route::view('/contacto','contacto');
 
 Route::view('/acerca','acerca');
+
+Route::get('/producto', function (Request $request) {
+    $article = $request->query('article');
+    return view('product', ['article' => $article]);
+ });
